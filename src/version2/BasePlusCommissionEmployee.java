@@ -1,22 +1,28 @@
 package version2;
 
 public class BasePlusCommissionEmployee {
+
+    private static int bdayMonth = 3;
+
     private int empID;
-    private String empName;
+    private Name name;
+    private MyDate birthDate;
     private double totalSale;
     private double baseSalary;
 
     public BasePlusCommissionEmployee() {
+        this(0, new Name(), new MyDate(), 0, 0);
     }
 
-    public BasePlusCommissionEmployee(int empID, String empName) {
-        this.empID = empID;
-        this.empName = empName;
+    public BasePlusCommissionEmployee(int empID, Name name, MyDate birthDate) {
+        this(empID, name, birthDate, 0, 0);
     }
 
-    public BasePlusCommissionEmployee(int empID, String empName, double totalSale, double baseSalary) {
+    public BasePlusCommissionEmployee(int empID, Name name, MyDate birthDate,
+                                      double totalSale, double baseSalary) {
         this.empID = empID;
-        this.empName = empName;
+        this.name = name == null ? new Name() : name;
+        this.birthDate = birthDate == null ? new MyDate() : birthDate;
         this.totalSale = totalSale;
         this.baseSalary = baseSalary;
     }
@@ -29,12 +35,20 @@ public class BasePlusCommissionEmployee {
         this.empID = empID;
     }
 
-    public String getEmpName() {
-        return empName;
+    public Name getName() {
+        return name;
     }
 
-    public void setEmpName(String empName) {
-        this.empName = empName;
+    public void setName(Name name) {
+        this.name = name == null ? new Name() : name;
+    }
+
+    public MyDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(MyDate birthDate) {
+        this.birthDate = birthDate == null ? new MyDate() : birthDate;
     }
 
     public double getTotalSale() {
@@ -52,39 +66,41 @@ public class BasePlusCommissionEmployee {
     public void setBaseSalary(double baseSalary) {
         this.baseSalary = baseSalary;
     }
-    public double computeSalary(){
-        double commission = 0;
 
-        if (totalSale < 50000) {
-            commission = totalSale * 0.05;
-        } else if (totalSale > 50000 && totalSale < 100000) {
-            commission = totalSale * 0.10;
-        } else if (totalSale > 100000 && totalSale < 500000) {
-            commission = totalSale * 0.15;
-        } else if (totalSale > 500000) {
-            commission = totalSale * 0.20;
+    public double computeCommission() {
+        if (totalSale <= 50000) {
+            return totalSale * 0.05;
+        } else if (totalSale <= 100000) {
+            return totalSale * 0.10;
+        } else if (totalSale <= 500000) {
+            return totalSale * 0.15;
+        } else {
+            return totalSale * 0.20;
         }
-        return commission + baseSalary;
     }
 
-    public void displayCommissionEmployee(){
-        System.out.println("PieceWorkerEmployee{\n");
-        System.out.println("EmployeeID: " + this.empID);
-        System.out.println("Employee Name: " + this.empName);
-        System.out.println("base Salary: " + this.totalSale);
-        System.out.println("Total Sale: " + this.totalSale);
-        System.out.println("Commission: " + computeSalary());
-        System.out.println("}");
+    public double computeSalary() {
+        double commission = computeCommission();
+        double bdayBonus = 5000;
+        double birthMonthBonus = birthDate.isMonth(bdayMonth)
+                ? bdayBonus : 0;
+        return baseSalary + commission + birthMonthBonus;
+    }
+
+    public void displayCommissionEmployee() {
+        System.out.println(this);
     }
 
     @Override
     public String toString() {
         return "BasePlusCommissionEmployee{\n" +
-                "EmployeeID: " + empID +
-                "\n, Employee Name: " + empName + '\'' +
-                "\n, base Salary: " + totalSale +
-                "\n, Total Sale: " + baseSalary +
-                "\n, Commission: " + computeSalary() +
-                '}';
+                "Employee ID: " + empID +
+                ", \nEmployee Name: " + name +
+                ", \nBirth Date: " + birthDate +
+                ", \nTotal Sale: " + totalSale +
+                ", \nBase Salary: " + baseSalary +
+                ", \nCommission: " + computeCommission() +
+                ", \nSalary: " + computeSalary() +
+                "\n}";
     }
 }

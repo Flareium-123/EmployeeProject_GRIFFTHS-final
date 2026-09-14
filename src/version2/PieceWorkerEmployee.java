@@ -1,22 +1,25 @@
- package version2;
+package version2;
 
 public class PieceWorkerEmployee {
     private int empID;
-    private String empName;
+    private Name name;
+    private MyDate birthDate;
     private int totalPiecesFinished;
     private double ratePerPiece;
 
     public PieceWorkerEmployee() {
-        this(0, "N/A", 0, 0);
+        this(0, new Name(), new MyDate(), 0, 0);
     }
 
-    public PieceWorkerEmployee(int empID, String empName) {
-        this(empID, empName, 0, 0);
+    public PieceWorkerEmployee(int empID, Name name, MyDate birthDate) {
+        this(empID, name, birthDate, 0, 0);
     }
 
-    public PieceWorkerEmployee(int empID, String empName, int totalPiecesFinished, double ratePerPiece) {
+    public PieceWorkerEmployee(int empID, Name name, MyDate birthDate,
+                               int totalPiecesFinished, double ratePerPiece) {
         this.empID = empID;
-        this.empName = empName;
+        this.name = name == null ? new Name() : name;
+        this.birthDate = birthDate == null ? new MyDate() : birthDate;
         this.totalPiecesFinished = totalPiecesFinished;
         this.ratePerPiece = ratePerPiece;
     }
@@ -29,12 +32,20 @@ public class PieceWorkerEmployee {
         this.empID = empID;
     }
 
-    public String getEmpName() {
-        return empName;
+    public Name getName() {
+        return name;
     }
 
-    public void setEmpName(String empName) {
-        this.empName = empName;
+    public void setName(Name name) {
+        this.name = name == null ? new Name() : name;
+    }
+
+    public MyDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(MyDate birthDate) {
+        this.birthDate = birthDate == null ? new MyDate() : birthDate;
     }
 
     public int getTotalPiecesFinished() {
@@ -52,40 +63,26 @@ public class PieceWorkerEmployee {
     public void setRatePerPiece(double ratePerPiece) {
         this.ratePerPiece = ratePerPiece;
     }
-    public double computeSalary(){
+
+    public double computeSalary() {
         double basePay = totalPiecesFinished * ratePerPiece;
-        double bonusPay = 0;
-        double salary = 0;
-
-        while (totalPiecesFinished >= 100) {
-
-            totalPiecesFinished -= 100;
-
-            bonusPay += (10 * ratePerPiece);
-        }
-        salary = basePay + bonusPay;
-
-        return salary;
+        int bonusGroups = totalPiecesFinished / 100;
+        return basePay + (bonusGroups * 10 * ratePerPiece);
     }
-    public void displayPieceWorkerEmployee(){
-        System.out.println("PieceWorkerEmployee{\n");
-        System.out.println("EmployeeID: " + this.empID);
-        System.out.println("Employee Name: " + this.empName);
-        System.out.println("Total Pieces Finished: " + this.totalPiecesFinished);
-        System.out.println("Rate Per Piece: " + this.ratePerPiece);
-        System.out.println("Salary: " + computeSalary());
-        System.out.println("}");
+
+    public void displayPieceWorkerEmployee() {
+        System.out.println(this);
     }
 
     @Override
     public String toString() {
         return "PieceWorkerEmployee{\n" +
-                "EmployeeID: " + empID +
-                ", \nEmployee Name: '" + empName + '\'' +
+                "Employee ID: " + empID +
+                ", \nEmployee Name: " + name +
+                ", \nBirth Date: " + birthDate +
                 ", \nTotal Pieces Finished: " + totalPiecesFinished +
                 ", \nRate Per Piece: " + ratePerPiece +
                 ", \nSalary: " + computeSalary() +
-                '}';
-
+                "\n}";
     }
 }

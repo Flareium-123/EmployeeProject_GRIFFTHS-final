@@ -7,6 +7,7 @@ public class MyDate {
     private int year;
 
     public MyDate() {
+        this(0, 0, 0, 0);
     }
 
     public MyDate(int month, int year, int date, int day) {
@@ -46,5 +47,14 @@ public class MyDate {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public boolean isMonth(int currentMonth) {
+        return month == currentMonth;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%02d/%02d/%04d", month, date, year);
     }
 }
