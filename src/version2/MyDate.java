@@ -6,4 +6,45 @@ public class MyDate {
     private int month;
     private int year;
 
+    public MyDate() {
+    }
+
+    public MyDate(int month, int year, int date, int day) {
+        this.month = month;
+        this.year = year;
+        this.date = date;
+        this.day = day;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
 }
