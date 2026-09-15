@@ -22,7 +22,7 @@ public class Main2 {
         MyDate d3 = new MyDate(bdayMonth, 2006, 9, 17);
         CommissionEmployee he3 = new CommissionEmployee(3, n3, d3, 45);
 
-        Name n4 = new Name("Junnel", "Paulo", "Uy", "Jr.");
+        Name n4 = new Name("Junnel", "Paolo", "Uy", "Jr.");
         MyDate d4 = new MyDate(bdayMonth, 2007, 3, 5);
         BasePlusCommissionEmployee he4 =
                 new BasePlusCommissionEmployee(4, n4, d4, 1100, 200);
