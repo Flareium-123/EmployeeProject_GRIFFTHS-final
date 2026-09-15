@@ -23,6 +23,7 @@ public class BasePlusCommissionEmployee {
         this.empID = empID;
         this.empName = name == null ? new Name() : name;
         this.birthDate = birthDate == null ? new MyDate() : birthDate;
+        this.dateHired = dateHired == null ? new MyDate() : dateHired;
         this.totalSale = totalSale;
         this.baseSalary = baseSalary;
     }
