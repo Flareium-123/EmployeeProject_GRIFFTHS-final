@@ -3,25 +3,25 @@ package version2;
 public class BasePlusCommissionEmployee {
 
     private static int bdayMonth = 3;
-
-    private int empID;
-    private Name name;
     private MyDate birthDate;
+    private MyDate dateHired;
+    private int empID;
+    private Name empName;
     private double totalSale;
     private double baseSalary;
 
     public BasePlusCommissionEmployee() {
-        this(0, new Name(), new MyDate(), 0, 0);
+        this(0, new Name(), new MyDate(),new MyDate(), 0, 0);
     }
 
-    public BasePlusCommissionEmployee(int empID, Name name, MyDate birthDate) {
-        this(empID, name, birthDate, 0, 0);
+    public BasePlusCommissionEmployee(int empID, Name name, MyDate birthDate, MyDate dateHired) {
+        this(empID, name, birthDate, dateHired, 0, 0);
     }
 
-    public BasePlusCommissionEmployee(int empID, Name name, MyDate birthDate,
+    public BasePlusCommissionEmployee(int empID, Name name, MyDate birthDate, MyDate dateHired,
                                       double totalSale, double baseSalary) {
         this.empID = empID;
-        this.name = name == null ? new Name() : name;
+        this.empName = name == null ? new Name() : name;
         this.birthDate = birthDate == null ? new MyDate() : birthDate;
         this.totalSale = totalSale;
         this.baseSalary = baseSalary;
@@ -36,11 +36,11 @@ public class BasePlusCommissionEmployee {
     }
 
     public Name getName() {
-        return name;
+        return empName;
     }
 
     public void setName(Name name) {
-        this.name = name == null ? new Name() : name;
+        this.empName = name == null ? new Name() : name;
     }
 
     public MyDate getBirthDate() {
@@ -95,8 +95,9 @@ public class BasePlusCommissionEmployee {
     public String toString() {
         return "BasePlusCommissionEmployee{\n" +
                 "Employee ID: " + empID +
-                ", \nEmployee Name: " + name +
+                ", \nEmployee Name: " + empName +
                 ", \nBirth Date: " + birthDate +
+                ", \nDate Hired: " + dateHired +
                 ", \nTotal Sale: " + totalSale +
                 ", \nBase Salary: " + baseSalary +
                 ", \nCommission: " + computeCommission() +

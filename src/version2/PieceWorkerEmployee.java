@@ -2,50 +2,41 @@ package version2;
 
 public class PieceWorkerEmployee {
     private int empID;
-    private Name name;
+    private Name empName;
     private MyDate birthDate;
+    private MyDate dateHired;
     private int totalPiecesFinished;
     private double ratePerPiece;
 
     public PieceWorkerEmployee() {
-        this(0, new Name(), new MyDate(), 0, 0);
+
+            this(0, new Name(),new MyDate(), new MyDate(), 0, 0);
+
     }
 
-    public PieceWorkerEmployee(int empID, Name name, MyDate birthDate) {
-        this(empID, name, birthDate, 0, 0);
+    public PieceWorkerEmployee(int empID, Name empName, MyDate birthDate, MyDate dateHired) {
+        this.empID = empID;
+        this.empName = empName;
+        this.birthDate = birthDate;
+        this.dateHired = dateHired;
     }
 
-    public PieceWorkerEmployee(int empID, Name name, MyDate birthDate,
+    public PieceWorkerEmployee(int empID, Name name, MyDate birthDate,MyDate dateHired,
                                int totalPiecesFinished, double ratePerPiece) {
         this.empID = empID;
-        this.name = name == null ? new Name() : name;
-        this.birthDate = birthDate == null ? new MyDate() : birthDate;
+        this.empName = name;
+        this.dateHired = dateHired;
+        this.birthDate = birthDate;
         this.totalPiecesFinished = totalPiecesFinished;
         this.ratePerPiece = ratePerPiece;
     }
 
-    public int getEmpID() {
-        return empID;
+    public double getRatePerPiece() {
+        return ratePerPiece;
     }
 
-    public void setEmpID(int empID) {
-        this.empID = empID;
-    }
-
-    public Name getName() {
-        return name;
-    }
-
-    public void setName(Name name) {
-        this.name = name == null ? new Name() : name;
-    }
-
-    public MyDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(MyDate birthDate) {
-        this.birthDate = birthDate == null ? new MyDate() : birthDate;
+    public void setRatePerPiece(double ratePerPiece) {
+        this.ratePerPiece = ratePerPiece;
     }
 
     public int getTotalPiecesFinished() {
@@ -56,12 +47,36 @@ public class PieceWorkerEmployee {
         this.totalPiecesFinished = totalPiecesFinished;
     }
 
-    public double getRatePerPiece() {
-        return ratePerPiece;
+    public MyDate getDateHired() {
+        return dateHired;
     }
 
-    public void setRatePerPiece(double ratePerPiece) {
-        this.ratePerPiece = ratePerPiece;
+    public void setDateHired(MyDate dateHired) {
+        this.dateHired = dateHired;
+    }
+
+    public MyDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(MyDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Name getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(Name empName) {
+        this.empName = empName;
+    }
+
+    public int getEmpID() {
+        return empID;
+    }
+
+    public void setEmpID(int empID) {
+        this.empID = empID;
     }
 
     public double computeSalary() {
@@ -78,8 +93,9 @@ public class PieceWorkerEmployee {
     public String toString() {
         return "PieceWorkerEmployee{\n" +
                 "Employee ID: " + empID +
-                ", \nEmployee Name: " + name +
+                ", \nEmployee Name: " + empName +
                 ", \nBirth Date: " + birthDate +
+                ", \nDate Hired: " + dateHired +
                 ", \nTotal Pieces Finished: " + totalPiecesFinished +
                 ", \nRate Per Piece: " + ratePerPiece +
                 ", \nSalary: " + computeSalary() +

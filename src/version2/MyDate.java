@@ -1,28 +1,19 @@
 package version2;
 
 public class MyDate {
-    private int date;
     private int day;
     private int month;
     private int year;
 
     public MyDate() {
-        this(0, 0, 0, 0);
+        this(1,1,2000);
     }
 
-    public MyDate(int month, int year, int date, int day) {
+    public MyDate(int day, int month, int year) {
+        this.day = day;
         this.month = month;
         this.year = year;
-        this.date = date;
-        this.day = day;
-    }
 
-    public int getDate() {
-        return date;
-    }
-
-    public void setDate(int date) {
-        this.date = date;
     }
 
     public int getDay() {
@@ -30,7 +21,10 @@ public class MyDate {
     }
 
     public void setDay(int day) {
-        this.day = day;
+        if(day < 1 || day > 31){
+            this.month = -1;
+        }
+        else{this.day = day;}
     }
 
     public int getMonth() {
@@ -38,7 +32,11 @@ public class MyDate {
     }
 
     public void setMonth(int month) {
-        this.month = month;
+        if(month < 1 || month > 12){
+            this.month = -1;
+
+        }
+        else{this.month = month;}
     }
 
     public int getYear() {
@@ -48,13 +46,20 @@ public class MyDate {
     public void setYear(int year) {
         this.year = year;
     }
-
+    public void displayDate(){
+        System.out.println(this);
+    }
     public boolean isMonth(int currentMonth) {
         return month == currentMonth;
     }
 
     @Override
     public String toString() {
-        return String.format("%02d/%02d/%04d", month, date, year);
+        String[] months = {"Jan", "Feb", "Mar","Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"};
+
+        return "BirthDate{" +
+                  day +  months[month-1] + year + "}";
     }
+
+
 }

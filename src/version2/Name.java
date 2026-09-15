@@ -7,21 +7,24 @@ public class Name {
     private String suffix;
 
     public Name() {
-        this("", "", "", "");
+        this("N/A", "N/A", "N/A", "");
     }
 
     public Name(String lastName, String firstName) {
-        this(firstName, "", lastName, "");
+        this.lastName = lastName;
+        this.firstName = firstName;
     }
 
     public Name(String firstName, String midName, String lastName) {
-        this(firstName, midName, lastName, "");
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.midName = midName;
     }
 
     public Name(String firstName, String midName, String lastName, String suffix) {
-        this.firstName = firstName == null ? "" : firstName;
+        this.firstName = firstName;
         this.midName = midName == null ? "" : midName;
-        this.lastName = lastName == null ? "" : lastName;
+        this.lastName = lastName;
         this.suffix = suffix == null ? "" : suffix;
     }
 
@@ -58,13 +61,20 @@ public class Name {
     }
 
     public void displayName() {
-        System.out.println(this);
+        String mid = midName.isEmpty() ? "" : " " + midName;
+        String end = suffix.isEmpty() ? "" : " " + suffix;
+        System.out.println(lastName + "," + firstName + mid.charAt(0) + end);
     }
 
     @Override
     public String toString() {
-        String middle = midName.isEmpty() ? "" : " " + midName;
-        String ending = suffix.isEmpty() ? "" : " " + suffix;
-        return firstName + middle + (lastName.isEmpty() ? "" : " " + lastName) + ending;
+        String mid = midName.isEmpty() ? "" : " " + midName;
+        String end = suffix.isEmpty() ? "" : " " + suffix;
+        return lastName +
+                "," +
+                firstName +
+                mid.charAt(0) +
+                end;
+
     }
 }

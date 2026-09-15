@@ -5,23 +5,29 @@ public class CommissionEmployee {
     private static int bdayMonth = 3;
 
     private int empID;
-    private Name name;
+    private Name empName;
     private MyDate birthDate;
+    private MyDate dateHired;
     private double totalSale;
 
     public CommissionEmployee() {
-        this(0, new Name(), new MyDate(), 0);
+        this(0, new Name(), new MyDate(), new MyDate(), 0);
     }
 
-    public CommissionEmployee(int empID, Name name, MyDate birthDate) {
-        this(empID, name, birthDate, 0);
-    }
-
-    public CommissionEmployee(int empID, Name name, MyDate birthDate, double totalSale) {
+    public CommissionEmployee(int empID, Name empName, MyDate birthDate, MyDate dateHired) {
         this.empID = empID;
-        this.name = name == null ? new Name() : name;
-        this.birthDate = birthDate == null ? new MyDate() : birthDate;
+        this.empName = empName;
+        this.birthDate = birthDate;
+        this.dateHired = dateHired;
+    }
+
+    public CommissionEmployee(int empID, Name name, MyDate birthDate, MyDate dateHired, double totalSale) {
+        this.empID = empID;
+        this.empName = name;
+        this.birthDate = birthDate;
+        this.dateHired = dateHired;
         this.totalSale = totalSale;
+
     }
 
     public int getEmpID() {
@@ -33,11 +39,11 @@ public class CommissionEmployee {
     }
 
     public Name getName() {
-        return name;
+        return empName;
     }
 
     public void setName(Name name) {
-        this.name = name == null ? new Name() : name;
+        this.empName = name == null ? new Name() : name;
     }
 
     public MyDate getBirthDate() {
@@ -83,7 +89,8 @@ public class CommissionEmployee {
     public String toString() {
         return "CommissionEmployee{\n" +
                 "Employee ID: " + empID +
-                ", \nEmployee Name: " + name +
+                ", \nEmployee Name: " + empName +
+                ", \nDate Hired: " + dateHired +
                 ", \nBirth Date: " + birthDate +
                 ", \nTotal Sale: " + totalSale +
                 ", \nSalary: " + computeSalary() +

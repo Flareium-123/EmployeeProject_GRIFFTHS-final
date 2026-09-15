@@ -2,24 +2,30 @@ package version2;
 
 public class HourlyEmployee {
     private int empID;
-    private Name name;
+    private Name empName;
     private MyDate birthDate;
+    private MyDate dateHired;
     private float totalHoursWorked;
     private double ratePerHour;
 
     public HourlyEmployee() {
-        this(0, new Name(), new MyDate(), 0, 0);
+        this(0, new Name(), new MyDate(), new MyDate(), 0, 0);
     }
 
-    public HourlyEmployee(int empID, Name name, MyDate birthDate) {
-        this(empID, name, birthDate, 0, 0);
-    }
+    public HourlyEmployee(int empID, Name empName, MyDate birthDate, MyDate dateHired) {
 
-    public HourlyEmployee(int empID, Name name, MyDate birthDate,
+        this.empID = empID;
+        this.empName = empName;
+        this.birthDate = birthDate;
+        this.dateHired = dateHired;
+
+    }
+    public HourlyEmployee(int empID, Name empName, MyDate birthDate, MyDate dateHired,
                           float totalHoursWorked, double ratePerHour) {
         this.empID = empID;
-        this.name = name == null ? new Name() : name;
-        this.birthDate = birthDate == null ? new MyDate() : birthDate;
+        this.empName = empName;
+        this.dateHired = dateHired;
+        this.birthDate = birthDate;
         this.totalHoursWorked = totalHoursWorked;
         this.ratePerHour = ratePerHour;
     }
@@ -32,12 +38,12 @@ public class HourlyEmployee {
         this.empID = empID;
     }
 
-    public Name getName() {
-        return name;
+    public Name getEmpName() {
+        return empName;
     }
 
-    public void setName(Name name) {
-        this.name = name == null ? new Name() : name;
+    public void setEmpName(Name empName) {
+        this.empName = empName;
     }
 
     public MyDate getBirthDate() {
@@ -45,7 +51,15 @@ public class HourlyEmployee {
     }
 
     public void setBirthDate(MyDate birthDate) {
-        this.birthDate = birthDate == null ? new MyDate() : birthDate;
+        this.birthDate = birthDate;
+    }
+
+    public MyDate getDateHired() {
+        return dateHired;
+    }
+
+    public void setDateHired(MyDate dateHired) {
+        this.dateHired = dateHired;
     }
 
     public float getTotalHoursWorked() {
@@ -79,8 +93,9 @@ public class HourlyEmployee {
     public String toString() {
         return "HourlyEmployee{\n" +
                 "Employee ID: " + empID +
-                ", \nEmployee Name: " + name +
+                ", \nEmployee Name: " + empName +
                 ", \nBirth Date: " + birthDate +
+                ", \nDate Hired: " + dateHired +
                 ", \nTotal Hours Worked: " + totalHoursWorked +
                 ", \nRate Per Hour: " + ratePerHour +
                 ", \nSalary: " + computeSalary() +
